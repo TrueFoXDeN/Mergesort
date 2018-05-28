@@ -1,21 +1,32 @@
 public class Mergesort {
 
-    public void mergesort(int E[], int left, int right) {
+    public int[] mergesort(int E[], int left, int right) {
+
         if (left < right) {
-
-
-
             int mid = (left + right) / 2;
-            mergesort(E, left, mid);
-            mergesort(E, mid + 1, right);
-            merge(E, left, mid, right);
+            E = mergesort(E, left, mid);
+            E = mergesort(E, mid + 1, right);
+            E = merge(E, left, mid, right);
 
+            for (int t:E) {
+                System.out.print(t + " ");
+            }
+            System.out.println();
         }
+
+        return E;
     }
 
-    void merge(int E[], int left, int mid, int right) {
+
+
+    int [] merge(int E[], int left, int mid, int right) {
         int a = left, b = mid + 1;
-        int Eold[] = E;
+
+        int[] Eold = new int[E.length];
+        for (int i = 0; i < E.length; i++)
+        {
+            Eold[i] = E[i];
+        }
 
         for (; left <= right; left++) {
             if (a > mid) {
@@ -29,6 +40,7 @@ public class Mergesort {
                 b++;
             }
         }
+        return E;
     }
 
 }
